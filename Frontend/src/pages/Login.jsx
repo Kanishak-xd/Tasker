@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { postJSON } from '../services/api.js'
 
-export default function Login() {
+export default function Login({ onAuth = () => {} }) {
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -16,6 +16,7 @@ export default function Login() {
     try {
       const data = await postJSON('/login', { email, password })
       localStorage.setItem('token', data.token)
+      onAuth(data.token)
       navigate('/tasks')
     } catch (err) {
       setError(err.message)

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { postJSON } from '../services/api.js'
 
-export default function Register() {
+export default function Register({ onAuth = () => {} }) {
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -16,6 +16,7 @@ export default function Register() {
     try {
       const data = await postJSON('/register', { email, password })
       localStorage.setItem('token', data.token)
+      onAuth(data.token)
       navigate('/tasks')
     } catch (err) {
       setError(err.message)
