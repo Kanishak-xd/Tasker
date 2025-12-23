@@ -26,39 +26,39 @@ export default function Login({ onAuth = () => {} }) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
-      <div className="w-full max-w-md bg-white shadow-md rounded-lg p-6">
-        <h1 className="text-2xl font-bold text-gray-800 mb-2">Welcome back</h1>
-        <p className="text-sm text-gray-600 mb-4">
+    <div className="min-h-screen bg-neutral-950 flex items-center justify-center px-4">
+      <div className="w-full max-w-md bg-neutral-900/80 backdrop-blur border border-neutral-800 shadow-xl rounded-lg p-6">
+        <h1 className="text-2xl font-bold text-neutral-50 mb-2">Welcome back</h1>
+        <p className="text-sm text-neutral-300 mb-4">
           Log in with your email and password to access your tasks.
         </p>
 
         {error ? (
-          <div className="mb-4 rounded border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
+          <div className="mb-4 rounded border border-red-400/30 bg-red-950/60 px-3 py-2 text-sm text-red-200">
             {error}
           </div>
         ) : null}
 
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <label className="block text-sm font-medium text-neutral-200 mb-1">Email</label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full rounded border border-gray-300 px-3 py-2 text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+              className="w-full rounded border border-neutral-700 bg-neutral-900 px-3 py-2 text-neutral-100 placeholder-neutral-500 focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400/30"
               placeholder="you@example.com"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+            <label className="block text-sm font-medium text-neutral-200 mb-1">Password</label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full rounded border border-gray-300 px-3 py-2 text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+              className="w-full rounded border border-neutral-700 bg-neutral-900 px-3 py-2 text-neutral-100 placeholder-neutral-500 focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400/30"
               placeholder="Your password"
               required
             />
@@ -67,15 +67,15 @@ export default function Login({ onAuth = () => {} }) {
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded bg-blue-600 px-4 py-2 text-white font-semibold hover:bg-blue-700 transition-colors disabled:opacity-70"
+            className="w-full rounded bg-amber-500 px-4 py-2 text-neutral-950 font-semibold hover:bg-amber-400 transition-colors disabled:opacity-70"
           >
             {loading ? 'Signing in...' : 'Login'}
           </button>
         </form>
 
-        <p className="text-sm text-gray-600 mt-4">
+        <p className="text-sm text-neutral-300 mt-4">
           Need an account?{' '}
-          <Link className="text-blue-600 hover:underline" to="/register">
+          <Link className="text-amber-400 hover:text-amber-300" to="/register">
             Register
           </Link>
         </p>
