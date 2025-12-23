@@ -3,6 +3,8 @@ import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import cors from 'cors'
 import authRoutes from './routes/auth.js'
+import taskRoutes from './routes/tasks.js'
+import authMiddleware from './middleware/auth.js'
 
 dotenv.config()
 
@@ -32,13 +34,19 @@ app.get('/', (req, res) => {
   res.json({ message: 'API running' })
 })
 
-// Auth routes
-app.use('/', authRoutes)
 app.use((req, res, next) => {
   console.log(`Incoming: ${req.method} ${req.path}`)
   next()
 })
+
+// Auth routes
+app.use('/', authRoutes)
+
+// Task routes (protected)
+app.use('/tasks', authMiddleware, taskRoutes)
+
 console.log('Auth routes loaded: /register, /login')
+console.log('Task routes loaded: /tasks')
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`)
